@@ -19,12 +19,7 @@ function CourseForm(props) {
       <div className="form-group">
         <label htmlFor="author">Author</label>
         <div className="field">
-          <select
-            id="author"
-            name="authorId"
-            value=""
-            className="form-control"
-          >
+          <select id="author" name="authorId" value="" className="form-control">
             <option value="" />
             <option value="1">Cory House</option>
             <option value="2">Scott Allen</option>
