@@ -3,6 +3,7 @@ import React, { useState } from "react";
 // import { Prompt } from "react-router-dom";
 import CourseForm from "./CourseForm";
 import * as courseApi from "../api/courseApi";
+import cogoToast from "cogo-toast";
 
 const ManageCourse = props => {
   const [course, setCourse] = useState({
@@ -25,6 +26,7 @@ const ManageCourse = props => {
     ev.preventDefault();
     courseApi.saveCourse(course).then(() => {
       props.history.push("/courses");
+      cogoToast.success("The new course data have been saved!");
     });
   }
 
