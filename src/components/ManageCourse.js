@@ -6,6 +6,7 @@ import * as courseApi from "../api/courseApi";
 import cogoToast from "cogo-toast";
 
 const ManageCourse = props => {
+  const [errors, setErrors] = useState({});
   const [course, setCourse] = useState({
     id: null,
     slug: "",
@@ -22,8 +23,21 @@ const ManageCourse = props => {
     setCourse(updatedCourse);
   }
 
+  function formIsValid() {
+    const _errors = {};
+    if (!course.title) _errors.title = "Title is required";
+    if (!course.authorId) _errors.authorId = "Author is required";
+    if (!course.category) _errors.category = "Category is required";
+
+    setErrors(_errors);
+
+    // Form is valid if the errors object has no properties
+    return Object.keys(_errors).length === 0;
+  }
+
   function handleSubmit(ev) {
     ev.preventDefault();
+    if (!formIsValid()) return;
     courseApi.saveCourse(course).then(() => {
       props.history.push("/courses");
       cogoToast.success("The new course data have been saved!");
@@ -34,6 +48,7 @@ const ManageCourse = props => {
     <>
       <h2>Manage Courses</h2>
       <CourseForm
+        errors={errors}
         course={course}
         onChange={handleChange}
         onSubmit={handleSubmit}
