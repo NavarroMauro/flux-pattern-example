@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { Prompt } from "react-router-dom";
 import CourseForm from "./CourseForm";
 import * as courseApi from "../api/courseApi";
@@ -14,6 +14,13 @@ const ManageCourse = props => {
     authorId: null,
     category: ""
   });
+
+  useEffect(() => {
+    const slug = props.match.params.slug; // from the path '/courses/:slug'
+    if (slug) {
+      courseApi.getCourseBySlug(slug).then(_course => setCourse(_course));
+    }
+  }, [props.match.params.slug]);
 
   function handleChange({ target }) {
     const updatedCourse = {
