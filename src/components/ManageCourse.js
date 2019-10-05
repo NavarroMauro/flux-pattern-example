@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState, useEffect } from "react";
-// import { Prompt } from "react-router-dom";
 import CourseForm from "./CourseForm";
-import * as courseApi from "../api/courseApi";
+import courseStore from "../stores/courseStore";
+import * as courseActions from "../actions/courseActions";
 import cogoToast from "cogo-toast";
 
 const ManageCourse = props => {
@@ -18,7 +18,7 @@ const ManageCourse = props => {
   useEffect(() => {
     const slug = props.match.params.slug; // from the path '/courses/:slug'
     if (slug) {
-      courseApi.getCourseBySlug(slug).then(_course => setCourse(_course));
+      setCourse(courseStore.getCourseBySlug(slug));
     }
   }, [props.match.params.slug]);
 
@@ -45,7 +45,7 @@ const ManageCourse = props => {
   function handleSubmit(ev) {
     ev.preventDefault();
     if (!formIsValid()) return;
-    courseApi.saveCourse(course).then(() => {
+    courseActions.saveCourse(course).then(() => {
       props.history.push("/courses");
       cogoToast.success("The new course data have been saved!");
     });
