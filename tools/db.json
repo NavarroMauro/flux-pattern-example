@@ -2,7 +2,7 @@
   "courses": [
     {
       "id": 1,
-      "title": "Securing React Apps with Auth0",
+      "title": "Securing React Apps with Auth02334",
       "slug": "react-auth0-authentication-security",
       "authorId": 1,
       "category": "JavaScript"
@@ -69,22 +69,6 @@
       "slug": "web-components-shadow-dom",
       "authorId": 1,
       "category": "HTML5"
-    },
-    {
-      "id": 11,
-      "slug": "hola",
-      "title": "Hola",
-      "authorId": 1,
-      "category": "tercera",
-      "createdAt": 1570278367202
-    },
-    {
-      "id": 12,
-      "slug": "geatg",
-      "title": "geatg",
-      "authorId": 1,
-      "category": "gtea",
-      "createdAt": 1570281701703
     }
   ],
   "authors": [
